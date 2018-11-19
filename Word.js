@@ -2,7 +2,7 @@
 let Letter = require("./Letter");
 
 // new Word constructor with a newWord object
-let Word = function(newWord) {
+let Word = function (newWord) {
     this.newWord = newWord;
     //array of new letter 
     this.newLetterArr = [];
@@ -26,7 +26,8 @@ let Word = function(newWord) {
             //push the outputLetter into the outputArr
             this.outputArr.push(outputLetter);
         }
-        console.log(this.outputArr.join(""));
+        return this.outputArr.join(" ");
+
     }
     //function that take a character as an argument
     this.guessedLetter = function (letter) {

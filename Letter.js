@@ -6,16 +6,20 @@ var Letter = function (letter){
     this.isGuessed = false;
     //function output 
     this.output = function(){
-        //if the letter has been guessed
-        if (this.isGuessed === true){
+        //if there is a space in the word, return a space
+        if (this.letter === " "){
+            return " ";
+        }
+        //if guess is letter
+        else if (this.isGuessed === true){
             //return a the letter
-            console.log(letter);
+            // console.log(letter);
             return this.letter;
             
         }
         // if the letter has not been guessed
         else{
-            console.log("Has not been guessed");
+            // console.log("Has not been guessed");
             //return underscore
             return "_";
 

@@ -2,22 +2,41 @@
 let Letter = require("./Letter");
 
 // new Word constructor with a newWord object
-var Word = function (newWord) {
+let Word = function(newWord) {
+    this.newWord = newWord;
     //array of new letter 
     this.newLetterArr = [];
     //each letter in the newWord
-    for (i = 0; i < newWord.length; i++){
-        //new Letter was created using Letter constructor
-        let newLetter = new Letter(newWord[i]);
-        //push the new letter in the new Letter arr
-        this.newLetterArr.push(newLetter);
-
+    this.makeNewWord = function () {
+        for (var i = 0; i < newWord.length; i++) {
+            //newLetter object was created using Letter constructor
+            let newLetter = new Letter(newWord[i]);
+            //push the newletter object in the newLetterArr
+            this.newLetterArr.push(newLetter);
+        }
     }
     //function that returns a string representing the word
-    this.displayWordinString= function(){
-        
+    this.displayWordinString = function () {
+        //display output array
+        this.outputArr = [];
+        //for each letter in the newLetterArry
+        for (var j = 0; j < this.newLetterArr.length; j++) {
+            // call the output method from letter.js and return either letter or underscore
+            let outputLetter = this.newLetterArr[j].output();
+            //push the outputLetter into the outputArr
+            this.outputArr.push(outputLetter);
+        }
+        console.log(this.outputArr.join(""));
+    }
+    //function that take a character as an argument
+    this.guessedLetter = function (letter) {
+        for (var k = 0; k < this.newLetterArr.length; k++) {
+            //passed the letter through the checkLetter method in letter.js
+            this.newLetterArr[k].checkLetter(letter);
+        }
     }
 }
-
+// Export the letter.js module
+module.exports = Word;
 
 

@@ -6,18 +6,19 @@ var Letter = function (letter){
     this.isGuessed = false;
     //function output 
     this.output = function(){
+        //if the letter has been guessed
         if (this.isGuessed === true){
+            //return a the letter
             console.log(letter);
             return this.letter;
             
         }
-        else if (this.isGuessed === false){
-            console.log("this letter has not been guessed");
+        // if the letter has not been guessed
+        else{
+            console.log("Has not been guessed");
+            //return underscore
             return "_";
 
-        }
-        else if (this.isGuessed === " "){
-            console.log("type a letter")
         }
     } 
     // function take character as an argument and check it against the exisiting letter in word

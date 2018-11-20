@@ -52,10 +52,13 @@ function startGame() {
     //console.log (randomNumber)
     //pick a random country from the country list
     randomCountry = countryList[randomNumber];
-    console.log(randomCountry);
+    // console.log(randomCountry);
     //generate new countryWord from the word constructor of the random country's name
     countryWord = new Word(randomCountry);
     // console.log(countryWord);
+    
+    // let stringRandomCountry = randomCountry.split("");
+    // console.log(stringRandomCountry)
 
     //display country Word in string using displayWordinString method
     countryWord.makeNewWord();
@@ -104,7 +107,7 @@ function checkGuess(input) {
             console.log(chalk.blue(`You have ${15 - guesses} guesses left`));
             userInput();
         }
-        else {
+        else{
             correctGuess()
         }
     }
@@ -114,22 +117,25 @@ function checkGuess(input) {
         userInput();
     }
 }
-
+    
 // correct guess function
-function correctGuess() {
-    if (randomCountry.displayWordinString() === countryWord.displayWordinString()) {
-        console.log(countryWord.displayWordinString());
-        console.log(chalk.bgred("You win"));
-        countryWord = "";
-        randomCountry = "";
-        randomNumber = 0;
-        guesses = 0;
-        startGame();
-    }
-    else {
-        userInput();
-    }
-}
+// function correctGuess() {
+   
+
+//     if (randomCountry === countryWord.displayWordinString()) {
+//         // console.log(countryWord.displayWordinString());
+//         console.log(chalk.bgred("You win"));
+//         countryWord = "";
+//         randomCountry = "";
+//         randomNumber = 0;
+//         guesses = 0;
+//         startGame();
+//     }
+//     else {
+//         userInput();
+//     }
+// }
+
 
 
 // call stargame

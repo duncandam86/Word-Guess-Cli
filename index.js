@@ -62,34 +62,42 @@ function startGame() {
         }
     ]).then(function (input) {
         // validate user input
+        // if input is blank
         if (input.letter === " ") {
             console.log("Please type a letter and hit enter");
             return startGame()
         }
+        //if more than one letters are entered at the same time
         else if (input.letter.length > 1) {
             console.log(chalk.red("Please enter only one letter at a time"));
             return startGame()
         }
+        // if the letter has already been guessed
         else if (guessesSoFar.includes(input.letter)) {
             console.log(chalk.yellow("You already guessed this letter, please guess a different letter"));
             return startGame();
         };
 
-        //only increase guesses on incorrect guess
+        //if the guessed letter wasn't part of the countryWord then increase the guess count
         if (!countryWord.correctWord.includes(input.letter)) {
             guesses++;
         }
         //push guessed letter in guessesSoFar array
         guessesSoFar.push(input.letter);
+
+        //loop through the country Word to check in the guessed letter in the word
         for (var i = 0; i < countryWord.newLetterArr.length; i++) {
             countryWord.newLetterArr[i].checkLetter(input.letter);
         };
+
+        //if the whole word is guessed and it's the same as the country word that was chosen => win
 
         if (countryWord.displayWordinString().replace(/ /g,"") === countryWord.correctWord.replace(/ /g,"")){
             endGame("win");
             return;
         }
-
+        
+        //If all guesses are used => loss
         if (guesses === 15) {
             endGame("loss");
             return;
@@ -99,19 +107,26 @@ function startGame() {
 }
 
 //endGame and reset
+//create an endGame function that passes through an object
 function endGame(outcome) {
+    //if the object is win => prompt win
     if (outcome === "win") {
         console.log(chalk.blue.bold("You won!"));
+        console.log(chalk.yellow("Your guess is: ") + chalk.red(countryWord.correctWord.toLowerCase()));
     }
+    // if not => loss
     else {
         console.log(chalk.red.bold("You lost!"));
         console.log(chalk.yellow("The correct word is: ") + chalk.red(countryWord.correctWord.toLowerCase()));
     }
+
+    // reset game with new word, guess and empty guessesSoFar array
     countryWord = new Word(countryList[Math.floor(Math.random() * countryList.length)]);
     countryWord.makeNewWord();
     guesses = 0;
     guessesSoFar = [];
 
+    // prompt user to see if they want to play again
     inquirer.prompt([
         {
             message: "Would you like to play again?",

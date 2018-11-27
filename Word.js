@@ -2,15 +2,15 @@
 let Letter = require("./Letter");
 
 // new Word constructor with a newWord object
-let Word = function (newWord) {
-    this.newWord = newWord;
+let Word = function (correctWord) {
+    this.correctWord = correctWord;
     //array of new letter 
     this.newLetterArr = [];
     //each letter in the newWord
     this.makeNewWord = function () {
-        for (var i = 0; i < newWord.length; i++) {
+        for (var i = 0; i < correctWord.length; i++) {
             //newLetter object was created using Letter constructor
-            let newLetter = new Letter(newWord[i]);
+            let newLetter = new Letter(correctWord[i]);
             //push the newletter object in the newLetterArr
             this.newLetterArr.push(newLetter);
         }

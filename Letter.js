@@ -30,7 +30,7 @@ var Letter = function (letter){
     this.checkLetter = function(guessedCharacter){
         if (guessedCharacter === this.letter){
             this.isGuessed = true;
-            console.log("Your guess is correct!")
+            // console.log("Your guess is correct!")
         }
     }
 }   

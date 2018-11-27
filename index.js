@@ -39,6 +39,7 @@ const countryList = ["afghanistan", "albania", "algeria", "andorra", "angola", "
 let countryWord = new Word(countryList[Math.floor(Math.random() * countryList.length)]);
 countryWord.makeNewWord();
 
+
 let guesses = 0;
 
 let guessesSoFar = [];
@@ -48,7 +49,6 @@ console.log(chalk.red("Welcome to Word Guess Game - Country Edition"));
 console.log(chalk.blue("Hint: You will guess a country's name"));
 console.log(chalk.cyan("You will have 15 guesses"));
 
-
 //Startgame function
 function startGame() {
     inquirer.prompt([
@@ -57,7 +57,7 @@ function startGame() {
             name: "letter",
             message: "\n Word: " + chalk.blue(countryWord.displayWordinString()) +
                 "\n Remaining Guesses: " + chalk.magenta.bold(15 - guesses) +
-                "\n Incorrect guesses: " + chalk.red(guessesSoFar.join(" ")) +
+                "\n Already guessed letters: " + chalk.red(guessesSoFar.join(" ")) +
                 "\n Guess a letter:"
         }
     ]).then(function (input) {
@@ -85,7 +85,7 @@ function startGame() {
             countryWord.newLetterArr[i].checkLetter(input.letter);
         };
 
-        if (countryWord.displayWordinString() === countryWord.correctWord) {
+        if (countryWord.displayWordinString().replace(/ /g,"") === countryWord.correctWord.replace(/ /g,"")){
             endGame("win");
             return;
         }
@@ -102,11 +102,10 @@ function startGame() {
 function endGame(outcome) {
     if (outcome === "win") {
         console.log(chalk.blue.bold("You won!"));
-        console.log(chalk.yellow("You guessed: ") + chalk.red(countryWord));
     }
     else {
         console.log(chalk.red.bold("You lost!"));
-        console.log(chalk.yello("The correct word is: ") + chalk.red(countryWord));
+        console.log(chalk.yellow("The correct word is: ") + chalk.red(countryWord.correctWord.toLowerCase()));
     }
     countryWord = new Word(countryList[Math.floor(Math.random() * countryList.length)]);
     countryWord.makeNewWord();

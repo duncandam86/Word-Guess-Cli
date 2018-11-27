@@ -33,6 +33,6 @@
 * Javascripts
 * Node.js
 * Packages:
-  * [inquiere](https://www.npmjs.com/package/inquirer)
+  * [inquirer](https://www.npmjs.com/package/inquirer)
   * [chalk](https://www.npmjs.com/package/chalk)
 

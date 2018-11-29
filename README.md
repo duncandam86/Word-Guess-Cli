@@ -30,7 +30,7 @@
 * In addition to inquirer, another npm called chalk was used to add color to terminal texts.
 
 ## Technical Requirements:
-* Javascripts
+* Javascript
 * Node.js
 * Packages:
   * [inquirer](https://www.npmjs.com/package/inquirer)
